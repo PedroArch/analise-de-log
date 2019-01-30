@@ -93,7 +93,7 @@ def terceira_requisicao(percent_errors):
     print("DIAS COM MAIS DE 1% DE ERROS NAS REQUISICOES")
     for (day, percenterror) in percent_errors:
             if percenterror > 1:
-                print("{} - {} % erros no dia".format(day, percenterror))
+                print("{} - {} % erros".format(day, round(percenterror, 2)))
     print("\n")
     print("*"*100)
 
