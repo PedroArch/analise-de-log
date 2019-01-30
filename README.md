@@ -24,7 +24,7 @@ psql -d news -f newsdata.sql
 ````sql
 psql news
 ````
-* Crie as views com os codigos abaixo na seção [VIEWS CRIADAS](VIEWS CRIADAS)
+* Crie as views com os codigos abaixo na seção VIEWS CRIADAS
 * execute no console (certifique-se de estar na mesma pasta dos arquivos)
 ````buildoutcfg
 python AnaliseLog.py
