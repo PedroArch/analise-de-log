@@ -27,12 +27,8 @@ def primeira_requisicao(post_mais_acessados):
     print("*" * 100)
     print("\n")
     print("OS ARTIGOS MAIS ACESSADOS:")
-    print("1. {} ".format(post_mais_acessados[0][0]) +
-          "- {} ".format(post_mais_acessados[0][1]) + "views")
-    print("2. {} ".format(post_mais_acessados[1][0]) +
-          "- {} ".format(post_mais_acessados[1][1]) + "views")
-    print("3. {} ".format(post_mais_acessados[2][0]) +
-          "- {} ".format(post_mais_acessados[2][1]) + "views")
+    for (post, views) in post_mais_acessados:
+        print("{} - {} views".format(post, views))
     print("\n")
     print("*"*100)
 
@@ -60,23 +56,21 @@ def segunda_requisicao(autores_mais_acessados):
     print("*" * 100)
     print("\n")
     print("OS AUTORES MAIS ACESSADOS:")
-    print("1. {} ".format(autores_mais_acessados[0][0]) +
-          "- {} ".format(autores_mais_acessados[0][1]) + "views")
-    print("2. {} ".format(autores_mais_acessados[1][0]) +
-          "- {} ".format(autores_mais_acessados[1][1]) + "views")
-    print("3. {} ".format(autores_mais_acessados[2][0]) +
-          "- {} ".format(autores_mais_acessados[2][1]) + "views")
-    print("4. {} ".format(autores_mais_acessados[3][0]) +
-          "- {} ".format(autores_mais_acessados[3][1]) + "views")
+    for (autores, views) in autores_mais_acessados:
+        print("{} - {} views".format(autores, views))
     print("\n")
+    print("*"*100)
     print("*"*100)
 
 
 # Cria o dicionário dos error por dia
 def percent_errors():
     query_percent = """
-                    SELECT *
-                    FROM percent_errors
+                    SELECT r.day, (100.0 * e.errors/r.requests) AS percetagem 
+                    FROM requests_day AS r 
+                    JOIN errors_per_day AS e 
+                    ON r.day = e.day
+                    ORDER BY r.day;
                     """
     db = psycopg2.connect(database="news")
     c = db.cursor()

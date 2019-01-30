@@ -16,7 +16,9 @@
 
 ##Como executar
 
-- Extraia os dados no banco de dados
+
+- baixe a data base neste [link](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
+- crie o banco de dados com os dados baixados**
 ````sql
 psql -d news -f newsdata.sql
 ````
@@ -26,7 +28,7 @@ psql news
 ````
 * Crie as views com os codigos abaixo na seção VIEWS CRIADAS
 * execute no console (certifique-se de estar na mesma pasta dos arquivos)
-````buildoutcfg
+````terminal
 python AnaliseLog.py
 ````
 
@@ -52,11 +54,4 @@ CREATE VIEW requests_day AS
 SELECT date(time) AS day, count(*) AS requests 
 FROM log group by day
 ORDER BY day;
-```
-```sql
-CREATE VIEW percent_errors AS 
-SELECT r.day, (100.0 * e.errors/r.requests) AS percetagem 
-FROM requests_day AS r 
-JOIN errors_per_day AS e ON r.day = e.day
-ORDER BY r.day;
 ```

@@ -2,9 +2,9 @@
 
 
 OS ARTIGOS MAIS ACESSADOS:
-1. Candidate is jerk, alleges rival - 338647 views
-2. Bears love berries, alleges bear - 253801 views
-3. Bad things gone, say good people - 170098 views
+Candidate is jerk, alleges rival - 338647 views
+Bears love berries, alleges bear - 253801 views
+Bad things gone, say good people - 170098 views
 
 
 ****************************************************************************************************
@@ -12,18 +12,19 @@ OS ARTIGOS MAIS ACESSADOS:
 
 
 OS AUTORES MAIS ACESSADOS:
-1. Ursula La Multa - 507594 views
-2. Rudolf von Treppenwitz - 423457 views
-3. Anonymous Contributor - 170098 views
-4. Markoff Chaney - 84557 views
+Ursula La Multa - 507594 views
+Rudolf von Treppenwitz - 423457 views
+Anonymous Contributor - 170098 views
+Markoff Chaney - 84557 views
 
 
+****************************************************************************************************
 ****************************************************************************************************
 ****************************************************************************************************
 
 
 DIAS COM MAIS DE 1% DE ERROS NAS REQUISICOES
-2016-07-17 - 2.2626862468027260 % erros no dia
+2016-07-17 - 2.26 % erros
 
 
 ****************************************************************************************************
