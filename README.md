@@ -1,25 +1,34 @@
 
 #Projeto Análise de Logs
 
-##Objetivos
-- Imprimir os três artigos mais populares de todos os tempos
-- Imprimir os autores de artigos mais populares de todos os tempos
-- Imprimir  quais dias mais de 1% das requisições resultaram em erros
+## [Descrição do Projeto](Descicao-Projeto.md)
+## [Rubricas do Projeto](Rubricas-Projeto.md)
 
-##Como executar o programa
-  Basta executar no prompt de comando o arquivo final_project.py digitando:
-  >>python final_project.py
+##Questões
+1. **Quais são os três artigos mais populares de todos os tempos?** Quais artigos foram os mais acessados? Apresente esta informação como uma lista organizada com o artigo mais popular no topo.
+2. **Quem são os autores de artigos mais populares de todos os tempos?** Isto é, quando você organizar todos os artigos que cada autor escreveu, quais autores obtiveram mais views? Apresente esta informação como uma lista organizada com o autor mais popular no topo.
+3. **Em quais dias mais de 1% das requisições resultaram em erros?** A tabela de logs inclui um status de coluna que indica o código de status HTTP que o site de notícias enviou ao navegador do usuário (consulte novamente esta aula se você quiser rever a ideia dos códigos de status HTTP).
 
-##Como cheguei aos resultados
-  Quanto ao primeiro item criei no banco de dados uma coluna com o id dos artigos como uma chave estrangeira ligando a tabela de log a tabela de artigos
-  >>alter table log add column id_article
-  >>update log set id_article = (**numero do id do artigo na tabela articles**) where path like '(**utilizei uma palavra chave do path que continha somente nesse path**)';
+##Requisitos
+- Python 3.7.1
+- psycopg2
+- Postgresql 9.6
 
-  Quanto ao segundo item fiz o mesmo que no primeiro criando um id chave estrangeira dos autores no log
-  >>alter table log add column id_author
-  >>update log set id_author = (**numero do id do autor na tabela authors**) where path like '(**utilizei uma palavra chave do path que continha somente nesse path e que o artigo foi escrito pelo autor em questão**)';
+##Como executar
 
-  Quanto ao terceiro item usei funções que extraiam os dicionários com os dias e total de requisições e erros, então só implementei o calculo com condições de imprimir somente quando havia uma margem maior que 1% de erro nas requisições.
+- Extraia os dados no banco de dados
+````sql
+psql -d news -f newsdata.sql
+````
+- Conecte ao banco de dados
+````sql
+psql news
+````
+* Crie as views com os codigos abaixo na seção [VIEWS CRIADAS](VIEWS CRIADAS)
+* execute no console (certifique-se de estar na mesma pasta dos arquivos)
+````buildoutcfg
+python AnaliseLog.py
+````
 
 ##VIEWS CRIADAS
 
