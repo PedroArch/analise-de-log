@@ -4,8 +4,8 @@
 import psycopg2
 
 
-# Cria o dicionário dos post mais acessados
-def post_mais_acessados():
+# Create a dictionary of the most accessed posts
+def most_accessed_posts():
     query_posts = """
                   SELECT articles.title, count(log.path) as total
                   FROM articles left join log
@@ -22,19 +22,19 @@ def post_mais_acessados():
     return top_posts
 
 
-# Printa os post mais acessados
-def primeira_requisicao(post_mais_acessados):
+# Print out the most accessed posts
+def first_request(most_accessed_posts):
     print("*" * 100)
     print("\n")
-    print("OS ARTIGOS MAIS ACESSADOS:")
-    for (post, views) in post_mais_acessados:
+    print("MOST POPULAR THREE ARTICLES OF ALL TIME:")
+    for (post, views) in most_accessed_posts:
         print("{} - {} views".format(post, views))
     print("\n")
     print("*"*100)
 
 
-# Cria o dicionário dos artistas mais acessados
-def autores_mais_acessados():
+# Create a dictionary of the most accessed authors
+def most_accessed_authors():
     query_authors = """
                     SELECT info_authors.name, count(log.path)
                     FROM info_authors
@@ -46,24 +46,24 @@ def autores_mais_acessados():
     db = psycopg2.connect(database="news")
     c = db.cursor()
     c.execute(query_authors)
-    top_autores = c.fetchall()
+    top_authors = c.fetchall()
     db.close()
-    return top_autores
+    return top_authors
 
 
-# Printa os autores mais acessados
-def segunda_requisicao(autores_mais_acessados):
+# Print out the most accessed authors
+def second_request(most_accessed_authors):
     print("*" * 100)
     print("\n")
-    print("OS AUTORES MAIS ACESSADOS:")
-    for (autores, views) in autores_mais_acessados:
-        print("{} - {} views".format(autores, views))
+    print("MOST POPULAR ARTICLES AUTHORS OF ALL TIME:")
+    for (authors, views) in most_accessed_authors:
+        print("{} - {} views".format(authors, views))
     print("\n")
     print("*"*100)
     print("*"*100)
 
 
-# Cria o dicionário dos error por dia
+# Create a dictionary of days with requests that took more than 1% of errors
 def percent_errors():
     query_percent = """
                     SELECT r.day, (100.0 * e.errors/r.requests) AS percetagem
@@ -80,28 +80,28 @@ def percent_errors():
     return percent
 
 
-# Printa os dias que tiveram mais de 1% das requições com erros
-def terceira_requisicao(percent_errors):
+# Print out days with requests that took more than 1% of errors
+def third_request(percent_errors):
     print("*"*100)
     print("\n")
-    print("DIAS COM MAIS DE 1% DE ERROS NAS REQUISICOES")
+    print("DAYS MORE THAN 1% OF REQUEST LEAD TO ERRORS:")
     for (day, percenterror) in percent_errors:
             if percenterror > 1:
-                print("{} - {} % erros".format(day, round(percenterror, 2)))
+                print("{} - {} % errors".format(day, round(percenterror, 2)))
     print("\n")
     print("*"*100)
 
 
 if __name__ == "__main__":
 
-    # Questão 1
-    artigos_mais_acessados = post_mais_acessados()
-    primeira_requisicao(artigos_mais_acessados)
+    # Question 1
+    artigos_mais_acessados = most_accessed_posts()
+    first_request(artigos_mais_acessados)
 
-    # Questão 2
-    autores_mais_lidos = autores_mais_acessados()
-    segunda_requisicao(autores_mais_lidos)
+    # Question 2
+    autores_mais_lidos = most_accessed_authors()
+    second_request(autores_mais_lidos)
 
-    # Questão 3
+    # Question 3
     percent_errors = percent_errors()
-    terceira_requisicao(percent_errors)
+    third_request(percent_errors)
