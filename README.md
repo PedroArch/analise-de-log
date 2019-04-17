@@ -3,8 +3,6 @@
 
 ## [DESCRIPTION](project-description.md)
 
-For this project, my task was to create a reporting tool that prints out reports( in plain text) based on the data in the given database. This reporting tool is a Python program using the `psycopg2` module to connect to the database. This project sets up a mock PostgreSQL database for a fictional news website. The provided Python script uses the psycopg2 library to query the database and produce a report that answers the following three questions:
-
 For this project, my task was to create a reporting tool that prints out reports based on the given database. This Python program use the psycopg2 module to connect to the PostgreSQL database. As you run the program, it will introduce the answers, in plain text, to the following questions:
 
 1. What are the most popular three articles of all time?
