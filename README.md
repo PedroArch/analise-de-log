@@ -1,38 +1,41 @@
 
-#Projeto Análise de Logs
+# LOG ANALYSIS PROJECT - Udacity Full Stack Web Developer Nanodegree
 
-## [Descrição do Projeto](Descicao-Projeto.md)
-## [Rubricas do Projeto](Rubricas-Projeto.md)
+## [DESCRIPTION](project-description.md)
 
-##Questões
-1. **Quais são os três artigos mais populares de todos os tempos?** Quais artigos foram os mais acessados? Apresente esta informação como uma lista organizada com o artigo mais popular no topo.
-2. **Quem são os autores de artigos mais populares de todos os tempos?** Isto é, quando você organizar todos os artigos que cada autor escreveu, quais autores obtiveram mais views? Apresente esta informação como uma lista organizada com o autor mais popular no topo.
-3. **Em quais dias mais de 1% das requisições resultaram em erros?** A tabela de logs inclui um status de coluna que indica o código de status HTTP que o site de notícias enviou ao navegador do usuário (consulte novamente esta aula se você quiser rever a ideia dos códigos de status HTTP).
+For this project, my task was to create a reporting tool that prints out reports( in plain text) based on the data in the given database. This reporting tool is a Python program using the `psycopg2` module to connect to the database. This project sets up a mock PostgreSQL database for a fictional news website. The provided Python script uses the psycopg2 library to query the database and produce a report that answers the following three questions:
 
-##Requisitos
+For this project, my task was to create a reporting tool that prints out reports based on the given database. This Python program use the psycopg2 module to connect to the PostgreSQL database. As you run the program, it will introduce the answers, in plain text, to the following questions:
+
+1. What are the most popular three articles of all time?
+2. Who are the most popular article authors of all time?
+3. Which days more than 1% of requests lead to errors?
+
+#### [PROJECT RUBRICS](project-rubrics.md)
+
+
+## REQUIREMENTS
 - Python 3.7.1
 - psycopg2
 - Postgresql 9.6
+- Winzip or 7-zip
 
-##Como executar
+## RUNNING THE PROGRAM
 
 
-- baixe a data base neste [link](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
-- crie o banco de dados com os dados baixados**
-````sql
-psql -d news -f newsdata.sql
-````
-- Conecte ao banco de dados
-````sql
-psql news
-````
-* Crie as views com os codigos abaixo na seção VIEWS CRIADAS
-* execute no console (certifique-se de estar na mesma pasta dos arquivos)
-````terminal
-python AnaliseLog.py
-````
+1. Download the database file [link](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
 
-##VIEWS CRIADAS
+2. Extract the newsdata.zip file. This file should be inside the program folder.
+
+3. Load the database using `psql -d news -f newsdata.sql`.
+
+4. Connect to the database using `psql -d news`.
+
+5. Create the Views given below. Then exit `\q`
+
+6. Now execute the Python file - `python logs_analysis.py`.
+
+## CREATED VIEWS
 
 ```sql
 CREATE VIEW info_authors AS
@@ -44,14 +47,14 @@ ORDER BY authors.name;
 ```sql
 CREATE VIEW errors_per_day AS
 SELECT date(time) AS day , count(path) AS errors
-FROM log 
+FROM log
 WHERE status = '404 NOT FOUND'
 GROUP BY day
 ORDER BY day;
 ```
 ```sql
 CREATE VIEW requests_day AS
-SELECT date(time) AS day, count(*) AS requests 
+SELECT date(time) AS day, count(*) AS requests
 FROM log group by day
 ORDER BY day;
 ```
